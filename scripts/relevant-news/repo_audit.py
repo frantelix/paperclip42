@@ -35,9 +35,17 @@ ACTIVE_PATHS = [
     PACKAGE / "tasks",
 ]
 
-ALLOWED_LAUFARTEFAKT = (
-    "docs/relevant-news/20_LAUFARTEFAKTE/README_OUTPUTS_HIER_ABLAGEN_V1_8.md"
-)
+ALLOWED_LAUFARTEFAKTE = {
+    "docs/relevant-news/20_LAUFARTEFAKTE/README_OUTPUTS_HIER_ABLAGEN_V1_8.md",
+    # PR #3 intentionally canonicalizes this narrow 2026-05-31 claim/source
+    # packet. Keep this allow-list exact; broad Laufartefakte stay blocked.
+    "docs/relevant-news/20_LAUFARTEFAKTE/2026-05-31_controlled-automation-pilot/06_source_verification_2026-05-31_Morgenbriefing_V1_8.md",
+    "docs/relevant-news/20_LAUFARTEFAKTE/2026-05-31_controlled-automation-pilot/07_source_verifier_completion_note_2026-05-31.md",
+    "docs/relevant-news/20_LAUFARTEFAKTE/2026-05-31_controlled-automation-pilot/08_ranking_refresh_after_source_recheck.md",
+    "docs/relevant-news/20_LAUFARTEFAKTE/2026-05-31_controlled-automation-pilot/Claim_Ledger_2026-05-31_Morgenbriefing_V1_8.md",
+    "docs/relevant-news/20_LAUFARTEFAKTE/2026-05-31_controlled-automation-pilot/Source_Verifier_Blocker_Note_2026-05-31_NEW-220.md",
+    "docs/relevant-news/20_LAUFARTEFAKTE/2026-05-31_controlled-automation-pilot/Source_Verifier_Sync_Target_2026-05-31_NEW-230.md",
+}
 
 ROOT_ARTIFACT_RE = re.compile(
     r"^docs/relevant-news/"
@@ -109,7 +117,7 @@ def trackable_package_files() -> list[str]:
 
 
 def is_runtime_artifact(path: str) -> bool:
-    if path == ALLOWED_LAUFARTEFAKT:
+    if path in ALLOWED_LAUFARTEFAKTE:
         return False
     if path.startswith("docs/relevant-news/20_LAUFARTEFAKTE/"):
         return True
