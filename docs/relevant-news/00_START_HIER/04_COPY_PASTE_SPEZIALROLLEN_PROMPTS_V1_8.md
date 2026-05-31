@@ -583,7 +583,7 @@ Was bleibt offen?
    - Watchlist,
    - Makro-Kontext,
    - Qualitätshinweis.
-8. Makro-Kontext hat 2 bis 4 Bulletpoints und erklärt nur die konkrete Nachrichtenlage.
+8. Makro-Kontext hat maximal 2 Bulletpoints und erklärt nur die konkrete Nachrichtenlage.
 9. Watchlist braucht 3 bis 5 konkrete Trigger oder nächste Prüfpunkte.
 10. Qualitätshinweis muss Quellenbreite, Frische, bekannte Unsicherheiten und bewusst nicht hochgezogene Themen nennen.
 
