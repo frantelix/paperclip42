@@ -1,0 +1,220 @@
+schema: paperclip/v1
+agents:
+  ceo:
+    role: ceo
+    permissions:
+      canCreateAgents: false
+    capabilities: "Setzt strategischen Rahmen, beauftragt CMO und nimmt Status nur nach Reviewer-Grün entgegen."
+    metadata:
+      collisionStrategy: skip-existing-runtime-agent
+      replaceBlockedReason: "Runtime-Agent enthält lokale Adapter- und Managed-Instruction-Konfiguration."
+  cmo:
+    role: cmo
+    permissions:
+      canCreateAgents: false
+    capabilities: "Koordiniert Rollen, Handoffs, Stop-Gates und Statusberichte ohne operative Spezialrollen zu ersetzen."
+    metadata:
+      collisionStrategy: skip-existing-runtime-agent
+      replaceBlockedReason: "Runtime-Agent enthält lokale Adapter- und Managed-Instruction-Konfiguration."
+  cto:
+    role: cto
+    permissions:
+      canCreateAgents: false
+    capabilities: "Prüft technische Setup-, Import- und Runtime-Fragen ohne redaktionelle Freigabe oder Versand."
+    metadata:
+      collisionStrategy: skip-existing-runtime-agent
+      replaceBlockedReason: "Runtime-Agent enthält lokale Adapter- und Managed-Instruction-Konfiguration."
+  scout:
+    adapter:
+      type: codex_local
+      config:
+        model: gpt-5.4
+        modelReasoningEffort: high
+        search: true
+        fastMode: false
+        dangerouslyBypassApprovalsAndSandbox: false
+    runtime:
+      modelProfiles:
+        cheap:
+          enabled: false
+          adapterConfig: {}
+    permissions:
+      canCreateAgents: false
+  ranking-editor:
+    adapter:
+      type: codex_local
+      config:
+        model: gpt-5.4
+        modelReasoningEffort: high
+        search: false
+        fastMode: false
+        dangerouslyBypassApprovalsAndSandbox: false
+    runtime:
+      modelProfiles:
+        cheap:
+          enabled: false
+          adapterConfig: {}
+    permissions:
+      canCreateAgents: false
+  source-verifier:
+    adapter:
+      type: codex_local
+      config:
+        model: gpt-5.4
+        modelReasoningEffort: xhigh
+        search: true
+        fastMode: false
+        dangerouslyBypassApprovalsAndSandbox: false
+    runtime:
+      modelProfiles:
+        cheap:
+          enabled: false
+          adapterConfig: {}
+    permissions:
+      canCreateAgents: false
+  briefing-writer:
+    adapter:
+      type: codex_local
+      config:
+        model: gpt-5.4
+        modelReasoningEffort: high
+        search: false
+        fastMode: false
+        dangerouslyBypassApprovalsAndSandbox: false
+    runtime:
+      modelProfiles:
+        cheap:
+          enabled: false
+          adapterConfig: {}
+    permissions:
+      canCreateAgents: false
+  adversarial-reviewer:
+    adapter:
+      type: codex_local
+      config:
+        model: gpt-5.4
+        modelReasoningEffort: xhigh
+        search: true
+        fastMode: false
+        dangerouslyBypassApprovalsAndSandbox: false
+    runtime:
+      modelProfiles:
+        cheap:
+          enabled: false
+          adapterConfig: {}
+    permissions:
+      canCreateAgents: false
+  quality-analyst:
+    adapter:
+      type: codex_local
+      config:
+        model: gpt-5.4
+        modelReasoningEffort: high
+        search: false
+        fastMode: false
+        dangerouslyBypassApprovalsAndSandbox: false
+    runtime:
+      modelProfiles:
+        cheap:
+          enabled: false
+          adapterConfig: {}
+    permissions:
+      canCreateAgents: false
+projects:
+  relevant-news:
+    status: planned
+    metadata:
+      applyGate: "Use existing Runtime-Projekt relevant-news; do not create daily-briefing duplicate."
+routines:
+  controlled-automation-pilot:
+    status: paused
+    priority: high
+    concurrencyPolicy: coalesce_if_active
+    catchUpPolicy: skip_missed
+    triggers:
+      - kind: schedule
+        label: Superseded by relevant-news-scheduled-morning-v18
+        enabled: false
+        cronExpression: "30 6 * * *"
+        timezone: Europe/Berlin
+  relevant-news-scheduled-morning-v18:
+    status: active
+    priority: high
+    concurrencyPolicy: coalesce_if_active
+    catchUpPolicy: skip_missed
+    variables:
+      - name: mailOccasion
+        label: Mail occasion
+        type: text
+        defaultValue: scheduled_morning
+        required: true
+      - name: runMode
+        label: Run mode
+        type: text
+        defaultValue: morning_full_briefing
+        required: true
+      - name: actualSendAllowed
+        label: Actual send allowed
+        type: boolean
+        defaultValue: true
+        required: true
+    triggers:
+      - kind: schedule
+        label: Relevant News scheduled_morning V1.8 send slot
+        enabled: true
+        cronExpression: "30 5 * * *"
+        timezone: Europe/Berlin
+  relevant-news-scheduled-midday-v18:
+    status: active
+    priority: high
+    concurrencyPolicy: coalesce_if_active
+    catchUpPolicy: skip_missed
+    variables:
+      - name: mailOccasion
+        label: Mail occasion
+        type: text
+        defaultValue: scheduled_midday
+        required: true
+      - name: runMode
+        label: Run mode
+        type: text
+        defaultValue: midday_delta_update
+        required: true
+      - name: actualSendAllowed
+        label: Actual send allowed
+        type: boolean
+        defaultValue: true
+        required: true
+    triggers:
+      - kind: schedule
+        label: Relevant News scheduled_midday V1.8 send slot
+        enabled: true
+        cronExpression: "30 11 * * *"
+        timezone: Europe/Berlin
+  relevant-news-scheduled-evening-v18:
+    status: active
+    priority: high
+    concurrencyPolicy: coalesce_if_active
+    catchUpPolicy: skip_missed
+    variables:
+      - name: mailOccasion
+        label: Mail occasion
+        type: text
+        defaultValue: scheduled_evening
+        required: true
+      - name: runMode
+        label: Run mode
+        type: text
+        defaultValue: evening_closeout_briefing
+        required: true
+      - name: actualSendAllowed
+        label: Actual send allowed
+        type: boolean
+        defaultValue: true
+        required: true
+    triggers:
+      - kind: schedule
+        label: Relevant News scheduled_evening V1.8 send slot
+        enabled: true
+        cronExpression: "30 18 * * *"
+        timezone: Europe/Berlin
