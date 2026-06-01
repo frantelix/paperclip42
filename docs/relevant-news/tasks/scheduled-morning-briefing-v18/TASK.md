@@ -59,13 +59,13 @@ Der Morgenlauf darf keinen bereits zugestellten Morgenbriefing-Fingerprint erneu
 ## Pfadkonvention
 
 ```text
-docs/relevant-news/20_LAUFARTEFAKTE/YYYY-MM-DD_scheduled_morning/
+<operator-output-root>/relevant-news/YYYY-MM-DD_scheduled_morning/
 ```
 
-Zusaetzlich aktualisieren:
+Optional zusaetzlich aktualisieren, aber nur ausserhalb von `docs/relevant-news`:
 
-- `docs/relevant-news/20_LAUFARTEFAKTE/_LATEST/RELEVANT_NEWS_TEXTDOKUMENT.md`
-- `docs/relevant-news/20_LAUFARTEFAKTE/_LATEST/MORNING.md`
+- `<operator-output-root>/relevant-news/_LATEST/RELEVANT_NEWS_TEXTDOKUMENT.md`
+- `<operator-output-root>/relevant-news/_LATEST/MORNING.md`
 
 ## Erlaubter Send-Pfad
 

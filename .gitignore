@@ -58,13 +58,17 @@ tests/release-smoke/playwright-report/
 .claude/worktrees/
 
 # Relevant News package: generated/recovery/runtime artifacts stay local.
+/docs/relevant-news/_archive_DO_NOT_LOAD/
+/docs/relevant-news/20_LAUFARTEFAKTE/
+/docs/relevant-news/04_Arbeitslaeufe/
+/docs/relevant-news/06_BEISPIELE/
+/docs/relevant-news/99_NOTIZEN/
+/docs/relevant-news/_LATEST/
 /docs/relevant-news/NEW-*.md
 /docs/relevant-news/SCOUT-PROBE-*.md
 /docs/relevant-news/2026-05-*.md
 /docs/relevant-news/Claim_Ledger_*.md
 /docs/relevant-news/06_source_verification_*.md
-/docs/relevant-news/20_LAUFARTEFAKTE/*
-!/docs/relevant-news/20_LAUFARTEFAKTE/README_OUTPUTS_HIER_ABLAGEN_V1_8.md
 /docs/relevant-news/**/runlog_*.txt
 /docs/relevant-news/**/send-log.*
 /docs/relevant-news/**/send-preview.*
@@ -75,6 +79,7 @@ tests/release-smoke/playwright-report/
 /docs/relevant-news/**/runtime-audit.md
 /docs/relevant-news/**/runtime-export/**
 /docs/relevant-news/**/_LATEST/**
+/docs/relevant-news/**/__pycache__/
 /scripts/relevant-news/__pycache__/
 /scripts/relevant-news/**/*.pyc
 /scripts/relevant-news/smtp-transport-*

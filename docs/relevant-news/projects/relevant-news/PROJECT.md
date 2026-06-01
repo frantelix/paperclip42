@@ -28,4 +28,4 @@ Dieses Projekt buendelt manuelle Testlaeufe und die drei V1.8-Regel-Send-Anlaess
 - `tasks/controlled-automation-pilot/TASK.md` bleibt historische Referenz und ist im Package schedule-disabled.
 - Echter Send ist nur mit Source Verification, Claim-Disziplin, passendem finalem Slot-Mailtext, Duplicate-Schutz, `recipientCount=1`, gesetzter V1.8-SMTP-Env und sanitisierten Logs erlaubt.
 - Kein Apply, solange aktive alte V1.2-Routinen oder ein paralleler alter Morgenlauf in der Runtime laufen.
-- Nach jedem riskanten Runtime-Schritt wird ein Log in `20_LAUFARTEFAKTE` abgelegt.
+- Nach jedem riskanten Runtime-Schritt wird ein Log ausserhalb von `docs/relevant-news` in einem nicht geladenen Runtime-Ausgabeordner abgelegt.

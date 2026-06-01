@@ -10,6 +10,7 @@ Diese Regeln gelten fuer `docs/relevant-news` und die zugehoerigen lokalen Hilfs
 ## Kontext
 
 - Relevant News ist ein lokaler Paperclip-Testkontext, kein oeffentliches Produktivsystem.
+- `docs/relevant-news` ist active-context-only. Paperclip darf diesen Baum als ladbaren Arbeitskontext behandeln.
 - Lokaler V1.8-Operator-Testversand ist nur ueber die aktiven V1.8-Gates erlaubt.
 - Oeffentlicher Produktivbetrieb, alte V1.2-Routinen, alte Mail-Skripte und alte Empfaengerableitung bleiben verboten.
 
@@ -27,11 +28,12 @@ Diese Regeln gelten fuer `docs/relevant-news` und die zugehoerigen lokalen Hilfs
 - `01_KI_MITARBEITER` ist kanonisch fuer Langprompts.
 - `agents/*/AGENTS.md` ist die runtime-nahe Kurzfassung.
 - `00_START_HIER/03_COPY_PASTE_MANAGEMENT_PROMPTS_V1_8.md` und `00_START_HIER/04_COPY_PASTE_SPEZIALROLLEN_PROMPTS_V1_8.md` sind abgeleitete Copy-Paste-Indizes, keine kanonischen Quellen.
-- Laufartefakte sind Outputs, keine aktiven Regeln.
+- Laufartefakte sind Outputs, keine aktiven Regeln, und gehoeren nicht in diesen aktiven Kontext.
 
 ## Datei- und Runtime-Sicherheit
 
 - Keine neuen Root-Level-Artefakte in `docs/relevant-news` erzeugen.
-- Laufartefakte gehoeren nur unter `20_LAUFARTEFAKTE` und werden nicht als aktive Regeln importiert.
+- Keine Laufartefakte, Archive, Beispiele, Notizen, Logs, Runtime-Exports oder generierten Outputs in `docs/relevant-news` schreiben.
+- Output-Pfade muessen ausserhalb von `docs/relevant-news` liegen oder in einem separat ausgeschlossenen Pfad, der nicht von Paperclip geladen wird.
 - Keine Send-, SMTP-, Empfaenger- oder Schedule-Implementierung ohne expliziten Auftrag aendern.
-- Keine non-empty Laufartefakte verschieben oder loeschen, solange der Auftrag das nicht ausdruecklich verlangt.
+- Bestehende historische Artefakte bleiben ueber Git-History und externe Operator-Backups nachvollziehbar, aber nicht im aktiven Paperclip-Ladekontext.

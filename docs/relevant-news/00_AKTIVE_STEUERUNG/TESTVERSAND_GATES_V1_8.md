@@ -52,7 +52,7 @@ Preview-Logs duerfen keine Empfaengerwerte, Domains oder Secrets enthalten. Zula
 - Adversarial Reviewer gibt ausdruecklich Gruen fuer genau diesen Lauf.
 - Kein offenes Gelb oder Rot liegt vor.
 - Datenqualitaet ist konkret benannt und glaettet keine Unsicherheit.
-- Versandlog kann vorab an einem konkreten Pfad unter `20_LAUFARTEFAKTE/` geschrieben werden.
+- Versandlog kann vorab an einem konkreten Pfad ausserhalb von `docs/relevant-news` geschrieben werden.
 - Versand ist ausdruecklich Testversand, kein Produktivstatus.
 
 ## Testversand Blockiert Bei

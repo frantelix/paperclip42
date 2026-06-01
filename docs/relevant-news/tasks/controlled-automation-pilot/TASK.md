@@ -31,7 +31,7 @@ Diese Task-Datei bleibt nur als historische Referenz fuer den Controlled-Automat
 3. Spezialrollen erzeugen die Pflichtartefakte nach V1.8.
 4. Adversarial Reviewer entscheidet Grün/Gelb/Rot mit Fehlercodes.
 5. Bei Grün erstellt CMO Management-Status und optional Qualitätslog.
-6. CMO legt ein kurzes Runtime-Log unter `20_LAUFARTEFAKTE/YYYY-MM-DD_controlled-automation-pilot/` ab.
+6. CMO legt ein kurzes Runtime-Log ausserhalb von `docs/relevant-news` in einem nicht geladenen Runtime-Ausgabeordner ab.
 
 ## Pflichtartefakte
 
@@ -67,7 +67,7 @@ Dieser Pilot darf nur einen versandfähigen Kandidaten vorbereiten. Ein tatsäch
 - Source Verification vollständig,
 - Adversarial Reviewer Grün,
 - explizit konfigurierte Testempfänger,
-- technisches Log im Laufartefakt-Ordner.
+- technisches Log ausserhalb von `docs/relevant-news`.
 
 ## Collision- und Runtime-Gate
 

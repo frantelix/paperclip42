@@ -31,7 +31,7 @@ Vor Apply muss die bestehende Runtime geprüft werden:
 - Keine Routine, die CTO als redaktionellen Ausführer/Reviewer einsetzt.
 - Keine offene Routine-Execution, die alten V1.2-Kontext in neue V1.8-Arbeit trägt.
 
-Wenn alte aktive Routinen existieren: Apply blockieren und Runtime-Audit im Laufartefakt-Ordner ablegen.
+Wenn alte aktive Routinen existieren: Apply blockieren und Runtime-Audit ausserhalb von `docs/relevant-news` in einem nicht geladenen Runtime-Ausgabeordner ablegen.
 
 ---
 
@@ -64,7 +64,7 @@ Versand und Testversand bleiben im alten Controlled-Automation-Pilot-, Recovery-
 - Adversarial Reviewer gibt Grün.
 - Kein Gelb oder Rot ist offen.
 - Testempfänger sind explizit in der Runtime konfiguriert, nicht im Package.
-- Ein technisches Runtime-Log liegt in `20_LAUFARTEFAKTE` vor.
+- Ein technisches Runtime-Log liegt ausserhalb von `docs/relevant-news` in einem nicht geladenen Runtime-Ausgabeordner vor.
 - CMO bestätigt nur Prozessvollständigkeit; CEO/CTO überstimmen keine redaktionellen Gates.
 
 Wenn ein Punkt fehlt: kein Versand, kein Testversand, keine Empfänger-Aktion.

@@ -35,23 +35,22 @@ ACTIVE_PATHS = [
     PACKAGE / "tasks",
 ]
 
-ALLOWED_LAUFARTEFAKTE = {
-    "docs/relevant-news/20_LAUFARTEFAKTE/README_OUTPUTS_HIER_ABLAGEN_V1_8.md",
-    # PR #3 intentionally canonicalizes this narrow 2026-05-31 claim/source
-    # packet. Keep this allow-list exact; broad Laufartefakte stay blocked.
-    "docs/relevant-news/20_LAUFARTEFAKTE/2026-05-31_controlled-automation-pilot/06_source_verification_2026-05-31_Morgenbriefing_V1_8.md",
-    "docs/relevant-news/20_LAUFARTEFAKTE/2026-05-31_controlled-automation-pilot/07_source_verifier_completion_note_2026-05-31.md",
-    "docs/relevant-news/20_LAUFARTEFAKTE/2026-05-31_controlled-automation-pilot/08_ranking_refresh_after_source_recheck.md",
-    "docs/relevant-news/20_LAUFARTEFAKTE/2026-05-31_controlled-automation-pilot/Claim_Ledger_2026-05-31_Morgenbriefing_V1_8.md",
-    "docs/relevant-news/20_LAUFARTEFAKTE/2026-05-31_controlled-automation-pilot/Source_Verifier_Blocker_Note_2026-05-31_NEW-220.md",
-    "docs/relevant-news/20_LAUFARTEFAKTE/2026-05-31_controlled-automation-pilot/Source_Verifier_Sync_Target_2026-05-31_NEW-230.md",
-}
+FORBIDDEN_CONTEXT_DIRS = [
+    PACKAGE / "_archive_DO_NOT_LOAD",
+    PACKAGE / "20_LAUFARTEFAKTE",
+    PACKAGE / "04_Arbeitslaeufe",
+    PACKAGE / "06_BEISPIELE",
+    PACKAGE / "99_NOTIZEN",
+    PACKAGE / "_LATEST",
+]
 
 ROOT_ARTIFACT_RE = re.compile(
     r"^docs/relevant-news/"
     r"(NEW-|SCOUT-PROBE-|2026-05-|Claim_Ledger_|06_source_verification_)"
 )
 OLD_TOP_STORY_RE = re.compile(r"\b3\s*(?:-|–|bis)\s*5\s+Top Stories\b", re.I)
+OLD_MACRO_RE = re.compile(r"Makro-Kontext hat 2 bis 4 Bulletpoints", re.I)
+HASHTABLE_RE = re.compile(r"System\.Collections\.Hashtable")
 OLD_ACTIVE_VERSION_RE = re.compile(r"(?:V1[._-]?[27]|V1\.[27])", re.I)
 
 RUNTIME_PATTERNS = [
@@ -116,9 +115,13 @@ def trackable_package_files() -> list[str]:
     )
 
 
+def existing_package_files() -> list[Path]:
+    if not PACKAGE.exists():
+        return []
+    return sorted(child for child in PACKAGE.rglob("*") if child.is_file())
+
+
 def is_runtime_artifact(path: str) -> bool:
-    if path in ALLOWED_LAUFARTEFAKTE:
-        return False
     if path.startswith("docs/relevant-news/20_LAUFARTEFAKTE/"):
         return True
     return any(fnmatch.fnmatch(path, pattern) for pattern in RUNTIME_PATTERNS)
@@ -151,10 +154,25 @@ def is_active_relevant_news_path(path: str) -> bool:
 def main() -> int:
     errors: list[str] = []
 
+    for path in FORBIDDEN_CONTEXT_DIRS:
+        if path.exists():
+            errors.append(f"forbidden active-context directory exists: {rel(path)}")
+
     for path in iter_text_files(ACTIVE_PATHS):
         text = path.read_text(encoding="utf-8")
         if OLD_TOP_STORY_RE.search(text):
             errors.append(f"old 3-5 Top Stories rule in active doc: {rel(path)}")
+        if OLD_MACRO_RE.search(text):
+            errors.append(f"old macro bulletpoint rule in active doc: {rel(path)}")
+        if HASHTABLE_RE.search(text):
+            errors.append(f"PowerShell hashtable artifact in active doc: {rel(path)}")
+
+    for path in existing_package_files():
+        relative_path = rel(path)
+        if ROOT_ARTIFACT_RE.search(relative_path):
+            errors.append(f"root-level relevant-news artifact exists: {relative_path}")
+        if is_runtime_artifact(relative_path):
+            errors.append(f"runtime/lauf artifact exists in active context: {relative_path}")
 
     for path in trackable_package_files():
         if ROOT_ARTIFACT_RE.search(path):
