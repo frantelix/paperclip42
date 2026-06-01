@@ -88,7 +88,7 @@ Diese Datei ist ein Paperclip-Setup-Entwurf für die lokale Paperclip-News-Firma
 - Status: historische Referenz; durch `relevant-news-scheduled-morning-v18` ersetzt.
 - Zweck: frueher taeglich ein kontrolliertes Morgenbriefing-Arbeitsobjekt erzeugen, nicht senden.
 - Schedule-Fidelity liegt in `.paperclip.yaml`.
-- Jeder Runtime-Schritt nach Import-Apply, Trigger-Aktivierung oder Testversand-Vorbereitung braucht ein Log in `20_LAUFARTEFAKTE`.
+- Jeder Runtime-Schritt nach Import-Apply, Trigger-Aktivierung oder Testversand-Vorbereitung braucht ein Log ausserhalb von `docs/relevant-news` in einem nicht geladenen Runtime-Ausgabeordner.
 - Der Pilot stoppt vor Versand, wenn Source Verification, Reviewer-Grün oder explizit konfigurierte Testempfänger fehlen.
 - Apply ist blockiert, solange alte V1.2-Routinen aktiv sind oder `ceo/cmo/cto` per Import-Replace überschrieben würden.
 

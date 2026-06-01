@@ -4,6 +4,8 @@
 
 V1.8 ist die optimierte Arbeitsgrundlage für die lokale Paperclip-News-Firma Relevant News.
 
+`docs/relevant-news` ist active-context-only: Der Baum enthält nur die ladbaren Regeln, Rollen, Skills, Tasks und Projektdefinitionen. Historische Archive, Laufartefakte, Beispiele, Notizen, Logs und generierte Outputs liegen nicht im aktiven Paperclip-Kontext.
+
 Sie kombiniert:
 
 - CEO als Oberchef,
@@ -54,8 +56,7 @@ Spezialrollen = operative News-Qualität.
 - Templates,
 - Fehler-Taxonomie,
 - Regressionstests,
-- Review alter Briefings zu Makro-Lastigkeit,
-- Beispiele.
+- Review alter Briefings zu Makro-Lastigkeit.
 
 ---
 
@@ -69,15 +70,16 @@ Spezialrollen = operative News-Qualität.
 - CTO als redaktioneller Reviewer,
 - CEO als operativer Entscheider,
 - CMO als Ersatz-Redakteur,
-- Makro-/Datenmeldungen als Standardfüllung.
+- Makro-/Datenmeldungen als Standardfüllung,
+- historische Archive und Recovery-Notizen,
+- Laufartefakte, Versandlogs, Runtime-Exports und generierte Outputs.
 
 ---
 
 ## Empfohlener nächster Schritt
 
-1. ZIP entpacken.
-2. Managementrollen aktualisieren.
-3. Spezialrollen unter CMO anlegen.
-4. Setup validieren.
-5. Redaktionellen Testlauf ohne Versand starten oder einen lokalen V1.8-Operator-Testslot nur nach `TESTVERSAND_GATES_V1_8.md` ausführen.
-6. Output prüfen und nur aus echten Testlauf-Fehlern weiter optimieren.
+1. Managementrollen aktualisieren.
+2. Spezialrollen unter CMO anlegen.
+3. Setup validieren.
+4. Redaktionellen Testlauf ohne Versand starten oder einen lokalen V1.8-Operator-Testslot nur nach `TESTVERSAND_GATES_V1_8.md` ausführen.
+5. Output ausserhalb von `docs/relevant-news` pruefen und nur aus echten Testlauf-Fehlern weiter optimieren.

@@ -60,13 +60,13 @@ Keine Wiederholung von Morgen oder Mittag ohne neues Delta. Watchlist-Trigger si
 ## Pfadkonvention
 
 ```text
-docs/relevant-news/20_LAUFARTEFAKTE/YYYY-MM-DD_scheduled_evening/
+<operator-output-root>/relevant-news/YYYY-MM-DD_scheduled_evening/
 ```
 
-Zusaetzlich aktualisieren:
+Optional zusaetzlich aktualisieren, aber nur ausserhalb von `docs/relevant-news`:
 
-- `docs/relevant-news/20_LAUFARTEFAKTE/_LATEST/RELEVANT_NEWS_TEXTDOKUMENT.md`
-- `docs/relevant-news/20_LAUFARTEFAKTE/_LATEST/EVENING.md`
+- `<operator-output-root>/relevant-news/_LATEST/RELEVANT_NEWS_TEXTDOKUMENT.md`
+- `<operator-output-root>/relevant-news/_LATEST/EVENING.md`
 
 ## Erlaubter Send-Pfad
 

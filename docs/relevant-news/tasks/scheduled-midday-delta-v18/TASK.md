@@ -60,13 +60,13 @@ Keine Wiederholung ohne Delta. Wenn seit Morgen kein starkes neues Delta vorlieg
 ## Pfadkonvention
 
 ```text
-docs/relevant-news/20_LAUFARTEFAKTE/YYYY-MM-DD_scheduled_midday/
+<operator-output-root>/relevant-news/YYYY-MM-DD_scheduled_midday/
 ```
 
-Zusaetzlich aktualisieren:
+Optional zusaetzlich aktualisieren, aber nur ausserhalb von `docs/relevant-news`:
 
-- `docs/relevant-news/20_LAUFARTEFAKTE/_LATEST/RELEVANT_NEWS_TEXTDOKUMENT.md`
-- `docs/relevant-news/20_LAUFARTEFAKTE/_LATEST/MIDDAY.md`
+- `<operator-output-root>/relevant-news/_LATEST/RELEVANT_NEWS_TEXTDOKUMENT.md`
+- `<operator-output-root>/relevant-news/_LATEST/MIDDAY.md`
 
 ## Erlaubter Send-Pfad
 
